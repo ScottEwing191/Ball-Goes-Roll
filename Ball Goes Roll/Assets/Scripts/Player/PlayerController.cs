@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour {
         startPos = transform.position;
         leapLine = GetComponentInChildren<LineRenderer>();
         leapLine.gameObject.SetActive(false);
-        inputsManager = GetComponent<PlayerInputsManager>();
+        inputsManager = GetComponentInParent<PlayerInputsManager>();
     }
     void FixedUpdate() {
         if (isGrounded && !isLeaping) {      // Regular movement
@@ -216,7 +216,9 @@ public class PlayerController : MonoBehaviour {
             StartCoroutine("Leaping");
         }
         // CANCEL LEAP
-        if (Input.GetButtonDown("Cancel") && inLeapViewMode) {
+        
+        //if (Input.GetButtonDown("Cancel") && inLeapViewMode) {
+        if (inputsManager.CancelLeap && inLeapViewMode) {
             //print("Cancel Leapfrog Mode");
             inLeapViewMode = false;
             leapTarget.gameObject.SetActive(false);

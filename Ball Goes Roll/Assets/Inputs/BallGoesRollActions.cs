@@ -65,6 +65,22 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CancelLeap"",
+                    ""type"": ""Button"",
+                    ""id"": ""0a3df9ec-3e6d-4f3f-9e60-d29772769473"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Respawn"",
+                    ""type"": ""Button"",
+                    ""id"": ""2dc287fb-3a88-4c68-b45b-34a18f4d5328"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -216,7 +232,7 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
                     ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
                     ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=0.5,y=0.5)"",
                     ""groups"": "";Keyboard&Mouse;Touch"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -395,6 +411,50 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b24fb483-3502-4dc6-bf0e-5d48a409aa44"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CancelLeap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c84b6d2f-711b-407e-a3d7-e46f559dad2f"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CancelLeap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e209950b-baac-4abf-a8d2-7ad546aacfdc"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Respawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3137baa5-90a8-444b-9e04-f2d9c3eb7735"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Respawn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -978,6 +1038,8 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
         m_Player_MoveLeapTarget = m_Player.FindAction("MoveLeapTarget", throwIfNotFound: true);
         m_Player_LeapFrogMode = m_Player.FindAction("LeapFrogMode", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_CancelLeap = m_Player.FindAction("CancelLeap", throwIfNotFound: true);
+        m_Player_Respawn = m_Player.FindAction("Respawn", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1045,6 +1107,8 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_MoveLeapTarget;
     private readonly InputAction m_Player_LeapFrogMode;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_CancelLeap;
+    private readonly InputAction m_Player_Respawn;
     public struct PlayerActions
     {
         private @BallGoesRollActions m_Wrapper;
@@ -1055,6 +1119,8 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
         public InputAction @MoveLeapTarget => m_Wrapper.m_Player_MoveLeapTarget;
         public InputAction @LeapFrogMode => m_Wrapper.m_Player_LeapFrogMode;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @CancelLeap => m_Wrapper.m_Player_CancelLeap;
+        public InputAction @Respawn => m_Wrapper.m_Player_Respawn;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1082,6 +1148,12 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @CancelLeap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancelLeap;
+                @CancelLeap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancelLeap;
+                @CancelLeap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancelLeap;
+                @Respawn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRespawn;
+                @Respawn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRespawn;
+                @Respawn.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRespawn;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1104,6 +1176,12 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @CancelLeap.started += instance.OnCancelLeap;
+                @CancelLeap.performed += instance.OnCancelLeap;
+                @CancelLeap.canceled += instance.OnCancelLeap;
+                @Respawn.started += instance.OnRespawn;
+                @Respawn.performed += instance.OnRespawn;
+                @Respawn.canceled += instance.OnRespawn;
             }
         }
     }
@@ -1266,6 +1344,8 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
         void OnMoveLeapTarget(InputAction.CallbackContext context);
         void OnLeapFrogMode(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnCancelLeap(InputAction.CallbackContext context);
+        void OnRespawn(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

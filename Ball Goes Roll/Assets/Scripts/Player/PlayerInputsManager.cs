@@ -9,16 +9,18 @@ public class PlayerInputsManager : MonoBehaviour {
     PlayerController playerController;
     private Vector3 movementVector = Vector3.zero;
     private Vector3 leapTargetMovementVector;
+    float horizontalCameraMovement, verticalCameraMovement;
+
     private bool leapFrogModePressed, leapFrogModeHeld, leapFrogModeReleased;
     private bool jump;
-
-
-
-
+    private bool cancelLeap;
 
     private void Awake() {
         controls = new BallGoesRollActions();
-        playerController = GetComponent<PlayerController>();
+        playerController = GetComponentInChildren<PlayerController>();
+        //controls.Player.CancelLeap.canceled += Cancel;
+        //controls.Player.CancelLeap.performed += Cancel;
+
     }
 
     private void OnEnable() {
@@ -46,6 +48,15 @@ public class PlayerInputsManager : MonoBehaviour {
     }
     public bool Jump {
         get { return jump; }
+    }
+    public bool CancelLeap {
+        get { return cancelLeap; }
+    }
+    public float HorizontalCameraMovement {
+        get { return horizontalCameraMovement; }
+    }
+    public float VerticalCameraMovement {
+        get { return verticalCameraMovement; }
     }
     #endregion
 
@@ -77,7 +88,11 @@ public class PlayerInputsManager : MonoBehaviour {
         Vector2 v = input.Get<Vector2>();
         movementVector = new Vector3(v.x, 0, v.y);
     }
-
+    private void OnLook(InputValue input) {
+        Vector2 v = input.Get<Vector2>();
+        horizontalCameraMovement = v.x;
+        verticalCameraMovement = -v.y;      // inverted is better
+    }
     private void OnMoveLeapTarget(InputValue input) {
         Vector2 v = input.Get<Vector2>();
         leapTargetMovementVector = new Vector3(0, 0, v.y);
@@ -87,10 +102,32 @@ public class PlayerInputsManager : MonoBehaviour {
         playerController.DoJump();
     }
 
+    private void OnCancelLeap(InputValue input) {
+        cancelLeap = true;
+        StartCoroutine(SetCancelLeapFalseAtEndOfFrame());
+    }
     // === On Action Methods End ===
 
 
     // === On Subscribed Methods Start ===
+    // Using this method to handle the cancel button works but it means that the cancel variable will continue to be true until the player releases the key. So player couldnt start a new leap until cancel
+    // ... button is released
+    /*private void Cancel(InputAction.CallbackContext ctx) {
+        if (ctx.performed) {
+            print("Performed");
+            cancelLeap = true;
+        }
+        else if (ctx.canceled) {
+            print("Cancelled");
+            cancelLeap = false;
+        }
+    }*/
     // === On Subscribed Methods End ===
 
+
+    // === Enumerators
+    IEnumerator SetCancelLeapFalseAtEndOfFrame() {       // Emulates The Get Key Down Functionality
+        yield return new WaitForEndOfFrame();
+        cancelLeap = false;
+    }
 }
