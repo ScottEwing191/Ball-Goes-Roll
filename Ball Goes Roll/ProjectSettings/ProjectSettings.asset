@@ -701,7 +701,7 @@ PlayerSettings:
   projectName: Ball Goes Roll
   organizationId: scott_ewing_8
   cloudEnabled: 0
-  enableNativePlatformBackendsForNewInputSystem: 0
+  enableNativePlatformBackendsForNewInputSystem: 1
   disableOldInputManagerSupport: 0
   legacyClampBlendShapeWeights: 0
   virtualTexturingSupportEnabled: 0

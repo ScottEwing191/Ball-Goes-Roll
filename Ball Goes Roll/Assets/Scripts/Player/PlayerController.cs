@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
     [Header("Player Controller")]
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour {
     private Collider playerCollider;                                        // the collider attached to the player used to check if player is grounded
     private Collider leverCollider;                                         // will be set to "other" collider OnTriggerEnter when the player is touching a lever trigger
 
+    private PlayerInputsManager inputsManager;
     #region Properties
     public bool IsGrounded {
         get { return isGrounded; }
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour {
     public Rigidbody PlayerRigidbody {
         get { return rb; }
     }
-    public  float MaxVelocity {
+    public float MaxVelocity {
         get { return maxVelocity; }
     }
 
@@ -80,12 +82,13 @@ public class PlayerController : MonoBehaviour {
         startPos = transform.position;
         leapLine = GetComponentInChildren<LineRenderer>();
         leapLine.gameObject.SetActive(false);
+        inputsManager = GetComponent<PlayerInputsManager>();
     }
     void FixedUpdate() {
         if (isGrounded && !isLeaping) {      // Regular movement
             rb.drag = defaultDrag;
             Movement();
-            
+
         }
         else if (!isLeaping) {                  // in-air Movement
             Vector3 XZVelocity = Vector3.Scale(rb.velocity, (Vector3.right + Vector3.forward));
@@ -111,7 +114,7 @@ public class PlayerController : MonoBehaviour {
         hasGroundCheckBeenDoneThisFrame = false;
         CheckRespawn();
         //CheckSkipToNextCheckpoint();
-        DoJump();       // 
+        //DoJump();       // 
 
         DoLeap();       // Handle Leapfrog  
 
@@ -120,7 +123,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         SetLeapTargetYPosition();       // Can probably be removed when i dont want the leap target to be visible all the time
-        
+
     }
 
 
@@ -136,9 +139,11 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    void DoJump() {
+    public void DoJump() {
         Vector3 jumpDirection = parallelToGroundTransform.TransformDirection(Vector3.up);
-        if (Input.GetButtonDown("Jump") && isGrounded && onJumpSurface) {
+        //if (Input.GetButtonDown("Jump") && isGrounded && onJumpSurface) {
+        if (isGrounded && onJumpSurface) {
+
             //rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
             rb.AddForce(jumpDirection * jumpHeight, ForceMode.Impulse);
         }
@@ -154,7 +159,9 @@ public class PlayerController : MonoBehaviour {
         if (!isLeapMechanicEnabled) { return; }     // if the leap mechanic is not enabled then dont bother doing anything else
 
         // ENTER LEAP VIEW MODE
-        if (Input.GetButtonDown("LeapFrogMode") && !inLeapViewMode && isGrounded && onLeapSurface) {     // Entering leap view mode
+        //if (Input.GetButtonDown("LeapFrogMode") && !inLeapViewMode && isGrounded && onLeapSurface) {     // Entering leap view mode
+        if (inputsManager.LeapFrogModePressed && !inLeapViewMode && isGrounded && onLeapSurface) {     // Entering leap view mode
+
             inLeapViewMode = true;
             leapTarget.gameObject.SetActive(true);
             leapLine.gameObject.SetActive(true);
@@ -165,7 +172,8 @@ public class PlayerController : MonoBehaviour {
             leapVelocity = Vector3.zero;                                            // Resetting leap Velocity for next leap
             //print("Enter Leap Frog Mode");
         }
-        else if (Input.GetButton("LeapFrogMode") && inLeapViewMode && !isGrounded) {          // not touching ground so not in leapview mode
+        //else if (Input.GetButton("LeapFrogMode") && inLeapViewMode && !isGrounded) {          // not touching ground so not in leapview mode
+        else if (inputsManager.LeapFrogModeHeld && inLeapViewMode && !isGrounded) {          // not touching ground so not in leapview mode
             inLeapViewMode = false;
             leapTarget.gameObject.SetActive(false);
             leapLine.gameObject.SetActive(false);
@@ -174,7 +182,8 @@ public class PlayerController : MonoBehaviour {
 
         }
 
-        else if (Input.GetButton("LeapFrogMode") && inLeapViewMode && isGrounded) {           // passes every frame leep view mode while is active
+        //else if (Input.GetButton("LeapFrogMode") && inLeapViewMode && isGrounded) {           // passes every frame leep view mode while is active
+        else if (inputsManager.LeapFrogModeHeld && inLeapViewMode && isGrounded) {           // passes every frame leep view mode while is active
             inLeapViewMode = true;
             leapTarget.gameObject.SetActive(true);
             leapLine.gameObject.SetActive(true);
@@ -190,7 +199,8 @@ public class PlayerController : MonoBehaviour {
             leapLandObject.transform.position = linepoints[linepoints.Length - 1];
         }
         // LEAP     The ball is in the air
-        else if (Input.GetButtonUp("LeapFrogMode") && inLeapViewMode) {
+        //else if (Input.GetButtonUp("LeapFrogMode") && inLeapViewMode) {
+        else if (inputsManager.LeapFrogModeReleased && inLeapViewMode) {
             //print("Jump");
             inLeapViewMode = false;                   // Probably set this later
             leapTarget.gameObject.SetActive(false);
@@ -236,7 +246,10 @@ public class PlayerController : MonoBehaviour {
         float movementHorizontal = Input.GetAxis("Horizontal");
         float movementVertical = Input.GetAxis("Vertical");
 
-        Vector3 movementVector = new Vector3(0, 0.0f, movementVertical);
+
+        //Vector3 movementVector = new Vector3(0, 0.0f, movementVertical);
+        Vector3 movementVector = inputsManager.LeapTargetMovementVector;
+
 
         movementVector = Camera.main.transform.TransformDirection(movementVector);
 
@@ -254,13 +267,16 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+
     void Movement() {
 
         rb.maxAngularVelocity = maxAngularVelocity;
-        float movementHorizontal = Input.GetAxis("Horizontal");
-        float movementVertical = Input.GetAxis("Vertical");
+        //float movementHorizontal = Input.GetAxis("Horizontal");
+        //float movementVertical = Input.GetAxis("Vertical");
 
-        Vector3 movementVector = new Vector3(movementHorizontal, 0.0f, movementVertical);
+        //Vector3 movementVector = new Vector3(movementHorizontal, 0.0f, movementVertical);
+        Vector3 movementVector = inputsManager.MovementVector;
+
 
 
         if (isGrounded || hasAirControl) {    // if not in the air
@@ -291,29 +307,13 @@ public class PlayerController : MonoBehaviour {
     }
 
     void InAirMovement() {      // This Works
-        //rb.maxAngularVelocity = maxAngularVelocity;
-        float movementHorizontal = Input.GetAxis("Horizontal");
-        float movementVertical = Input.GetAxis("Vertical");
-
-        Vector3 movementVector = new Vector3(movementHorizontal, 0.0f, movementVertical);
-
+        Vector3 movementVector = inputsManager.MovementVector;
         if (hasAirControl) {    // if not in the air
-            //movementVector = camera.transform.TransformDirection(movementVector);
             movementVector = Camera.main.transform.TransformDirection(movementVector);
-
             movementVector.Scale(Vector3.right + Vector3.forward);                      // add sforce forwards indepentand of camera pitch
-
             // only move ball if not in leap mode
             rb.AddForce(movementVector * inAirSpeed * Time.deltaTime);
-            //rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxXZAirVelocity);
-
-            /*Vector3 temp = Vector3.Scale(rb.velocity, (Vector3.right + Vector3.forward));
-            if (temp.magnitude > maxXZAirVelocity) {                    // if adding the force has increased the velocity the add the opposite force to undo ???
-                rb.AddForce(-movementVector * speed * Time.deltaTime);
-
-            }*/
         }
-
     }
 
     public void StopBall() {
