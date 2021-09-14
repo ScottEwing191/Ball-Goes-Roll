@@ -4,38 +4,41 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCheckpointController : MonoBehaviour {
-    [SerializeField] private Transform cameraTarget;                // when camera target is rotated camera will also rotate. So rotation is set by changing camera target rotation
+    [SerializeField] private Transform cameraTarget;            // when camera target is rotated camera will also rotate. So rotation is set by changing camera target rotation
 
     [SerializeField] private float skipCheckpointInputHoldTime = 1;
     [SerializeField] private int resetsBeforeCheckpointSkipAvailable = 3;       // the number of resets before the player gets the option to skip tothe next checkpoint
-    public int resetsOnCurrentCheckpoint;      // how many times has the player reset on the current checkpoint
+    public int resetsOnCurrentCheckpoint;                           // how many times has the player reset on the current checkpoint
     private bool canSkipCheckpoint;
+    private bool isSkipCheckpointHoldRoutineRunning = false;        // Keeps track of whether the Skip checkpoint hold routine is running
 
-    private Coroutine skipCheckpointHoldInputRoutine = null;    // create the variable so that it can be used to stop the routine later
+    private Coroutine skipCheckpointHoldRoutine = null;             // create the variable so that it can be used to stop the routine later
     private Checkpoint currentCheckpoint;
     private Checkpoint nextCheckpoint;
 
-
-
-    private void Update() {
-        // Check if conditions are correc t to start skipping to the next checkpoint
-        if (canSkipCheckpoint && Input.GetButtonDown("NextCheckpoint")) {
-            skipCheckpointHoldInputRoutine = StartCoroutine(SkipCheckpointHoldInput());
+    // Method called from PlayerInputHandler when input is pressed
+    public void TrySkipCheckpoint() {
+        if (canSkipCheckpoint) {
+            skipCheckpointHoldRoutine = StartCoroutine(SkipCheckpointHold());
             UILevelManager.Instance.DisableSkipCheckpointText();
             UILevelManager.Instance.EnableInputImage();
         }
     }
+    // Method called from PlayerInputHandler when input is released
+    public void CancelSkipCheckpoint() {
+        if (canSkipCheckpoint && isSkipCheckpointHoldRoutineRunning) {
+            StopCoroutine(skipCheckpointHoldRoutine);
+            isSkipCheckpointHoldRoutineRunning = false;
+            ResetUIAfterHoldInputEnumerator();
+        }
+    }
 
-    private IEnumerator SkipCheckpointHoldInput() {
+    private IEnumerator SkipCheckpointHold() {
         float time = 0;
-        bool shouldSkipCheckpoint = true;
+        isSkipCheckpointHoldRoutineRunning = true;
         UILevelManager.Instance.SetSkipCheckpointFillImage(0);
         while (time <= skipCheckpointInputHoldTime) {
-            // Will only skip to the next checkpoint if the button is held for the entire duration. otherwise return from the coroutine
-            if (!Input.GetButton("NextCheckpoint")) {
-                shouldSkipCheckpoint = false;
-                break;
-            }
+
             // get a representation of the current time as value between 0 and 1 where 0 is 0 seconds and 1 is the number of secs required to skip
             float valueForSlider = Mathf.Clamp(time / skipCheckpointInputHoldTime, 0, 1);
             UILevelManager.Instance.SetSkipCheckpointFillImage(valueForSlider);
@@ -43,10 +46,8 @@ public class PlayerCheckpointController : MonoBehaviour {
             yield return null;
         }
         ResetUIAfterHoldInputEnumerator();
-
-        if (shouldSkipCheckpoint) {
-            GoToNextCheckpoint();
-        }
+        GoToNextCheckpoint();
+        isSkipCheckpointHoldRoutineRunning = false;
     }
 
     // if the the player enters a checkpoint while holding the skip checkpoint button they will skip to the next CP of the CP they have just entered,
@@ -123,14 +124,10 @@ public class PlayerCheckpointController : MonoBehaviour {
             UILevelManager.Instance.DisableSkipCheckpointText();
             // coroutine must be stopped when entering checkpoint so that the player cant skip ahead to the new CP's next CP
             //StopAllCoroutines();
-            if (skipCheckpointHoldInputRoutine != null) {
-                StopCoroutine(skipCheckpointHoldInputRoutine);
+            if (skipCheckpointHoldRoutine != null) {
+                StopCoroutine(skipCheckpointHoldRoutine);
             }
             ResetUIAfterHoldInputEnumerator();
-
-
-
-
             // Code to do with Next Checkpoint
             if (otherCheckpoint.NextCheckpoints[0] != null) {       // if the checkpoint the player has just reached contains a rerference to the next checkpoint
 

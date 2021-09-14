@@ -6,10 +6,10 @@ public class PlayerSingleton : MonoSingleton<PlayerSingleton>
 {
     private PlayerController playerController;
     //[HideInInspector] public LeapFrogMechanic leapFrogMechanic;
-    private PlayerCheckpointController playerRespawn;
+    private PlayerCheckpointController playerCheckpointController;
 
-    public PlayerCheckpointController PlayerRespawn {
-        get { return playerRespawn; }
+    public PlayerCheckpointController PlayerCheckpointController {
+        get { return playerCheckpointController; }
     }
     public PlayerController PlayerController {
         get { return playerController; }
@@ -19,17 +19,7 @@ public class PlayerSingleton : MonoSingleton<PlayerSingleton>
     protected override void Awake() {
         base.Awake();
         playerController = FindObjectOfType<PlayerController>();
-        playerRespawn = FindObjectOfType<PlayerCheckpointController>();
-    }
+        playerCheckpointController = FindObjectOfType<PlayerCheckpointController>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

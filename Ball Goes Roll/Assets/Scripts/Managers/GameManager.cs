@@ -58,15 +58,10 @@ public class GameManager : MonoSingleton<GameManager>, ISaveable {
         
     }
 
-    private void Update() {
-        DoPauseGame();
-
-
-    }
 
     // PAUSE GAME
-    private void DoPauseGame() {
-        if (Input.GetButtonDown("Pause") && !isLevelCompleted) {
+    public void DoPauseGame() {
+        if (!isLevelCompleted) {
             //Pause Game
             if (!isGamePaused) {
                 Time.timeScale = 0;

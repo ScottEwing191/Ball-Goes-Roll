@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour {
     private bool isStillInTheAir = false;                                   // True if the ball is in the air and was also in the air in the previous frame. (Except first frame in air)
     [SerializeField] private bool isGrounded = true;                                         // is the ball currently grounded
     private bool hasGroundCheckBeenDoneThisFrame = false;                   // keeps track of whether ground check has already been done
-    private bool shouldCheckLeverInteractInput = false;
+    private bool isTouchingInteractTrigger = false;
 
     private LeapFrogMechanic leapFrogMechanic;
     private Rigidbody rb;
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour {
     private Collider playerCollider;                                        // the collider attached to the player used to check if player is grounded
     private Collider leverCollider;                                         // will be set to "other" collider OnTriggerEnter when the player is touching a lever trigger
 
-    private PlayerInputHandler inputsManager;
+    private PlayerInputHandler playerInputHandler;
     #region Properties
     public bool IsGrounded {
         get { return isGrounded; }
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour {
         startPos = transform.position;
         leapLine = GetComponentInChildren<LineRenderer>();
         leapLine.gameObject.SetActive(false);
-        inputsManager = GetComponentInParent<PlayerInputHandler>();
+        playerInputHandler = GetComponentInParent<PlayerInputHandler>();
     }
     void FixedUpdate() {
         if (isGrounded && !isLeaping) {      // Regular movement
@@ -98,41 +98,25 @@ public class PlayerController : MonoBehaviour {
             if (!isStillInTheAir) {             // if this is the first frame off the ground set the velocity of the ball at this point
                 isStillInTheAir = true;
                 jumpStartVelocity = rb.velocity;
-                //if (Vector3.Scale(jumpStartVelocity, Vector3.forward +Vector3.left).magnitude < defaultAirVelocityMagnitude) {                        // setting the minimum max velocity
-                //    jumpStartVelocity =  jumpStartVelocity.normalized * defaultAirVelocityMagnitude;
-                //}
             }
             InAirMovement(jumpStartVelocity);
         }
-
-
     }
 
     private void Update() {
         hasGroundCheckBeenDoneThisFrame = false;
-        if (shouldCheckLeverInteractInput) {
-            CheckLeverInteractInput();
-        }
         SetLeapTargetYPosition();       // Can probably be removed when i dont want the leap target to be visible all the time
     }
     public void Respawn() {
         if (!inLeapViewMode) {     // Respawn the player if they are not in leap view mode
-            PlayerSingleton.Instance.PlayerRespawn.Respawn();
+            PlayerSingleton.Instance.PlayerCheckpointController.Respawn();
             GameManager.Instance.ResetBall();
-        }
-    }
-    private void CheckSkipToNextCheckpoint() {
-        if (!inLeapViewMode && Input.GetButtonDown("NextCheckpoint")) {     // Respawn the player if they are not in leap view mode
-            PlayerSingleton.Instance.PlayerRespawn.GoToNextCheckpoint();
         }
     }
 
     public void DoJump() {
         Vector3 jumpDirection = parallelToGroundTransform.TransformDirection(Vector3.up);
-        //if (Input.GetButtonDown("Jump") && isGrounded && onJumpSurface) {
         if (isGrounded && onJumpSurface) {
-
-            //rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
             rb.AddForce(jumpDirection * jumpHeight, ForceMode.Impulse);
         }
     }
@@ -145,11 +129,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Input Triggered Version
-    public IEnumerator StartLeapMode() {
+    public IEnumerator StartLeapMode(Action setActionMapsCallback) {
         if (!isLeapMechanicEnabled) { yield break; }     // if the leap mechanic is not enabled then dont bother doing anything else
         if (!isGrounded) { yield break; }
         
-        while (inputsManager.RunLeapRoutine) {
+        setActionMapsCallback.Invoke();                 // now that it is know that the enuerator will run the Action map can be set in the input Handler Script
+        while (playerInputHandler.RunLeapRoutine) {
 
             // ENTER LEAP VIEW MODE
             if (!inLeapViewMode && isGrounded && onLeapSurface) {
@@ -227,13 +212,7 @@ public class PlayerController : MonoBehaviour {
 
     // Moves the target position that the ball will aim for
     void MoveLeapTarget() {
-        float movementHorizontal = Input.GetAxis("Horizontal");
-        float movementVertical = Input.GetAxis("Vertical");
-
-
-        //Vector3 movementVector = new Vector3(0, 0.0f, movementVertical);
-        Vector3 movementVector = inputsManager.LeapTargetMovementVector;
-
+        Vector3 movementVector = playerInputHandler.LeapTargetMovementVector;
 
         movementVector = Camera.main.transform.TransformDirection(movementVector);
 
@@ -251,27 +230,14 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-
     void Movement() {
-
         rb.maxAngularVelocity = maxAngularVelocity;
-        //float movementHorizontal = Input.GetAxis("Horizontal");
-        //float movementVertical = Input.GetAxis("Vertical");
-
-        //Vector3 movementVector = new Vector3(movementHorizontal, 0.0f, movementVertical);
-        Vector3 movementVector = inputsManager.MovementVector;
-
-
-
+        Vector3 movementVector = playerInputHandler.MovementVector;
         if (isGrounded || hasAirControl) {    // if not in the air
-
             movementVector = parallelToGroundTransform.TransformDirection(movementVector);
-
-
             if (!inLeapViewMode) {                                                      // only move ball if not in leap mode
                 rb.AddForce(movementVector * speed * Time.deltaTime);
                 rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
-
             }
         }
     }
@@ -291,7 +257,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void InAirMovement() {      // This Works
-        Vector3 movementVector = inputsManager.MovementVector;
+        Vector3 movementVector = playerInputHandler.MovementVector;
         if (hasAirControl) {    // if not in the air
             movementVector = Camera.main.transform.TransformDirection(movementVector);
             movementVector.Scale(Vector3.right + Vector3.forward);                      // add sforce forwards indepentand of camera pitch
@@ -306,14 +272,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     void InAirMovement(Vector3 startVelocity) {
-
         Vector2 startVelocityXZ = new Vector2(startVelocity.x, startVelocity.z);    // dont let the player XZ magnitude increase beyon this
         Vector2 currentVelocityXZ = Vector2.zero;
-
-        float movementHorizontal = Input.GetAxis("Horizontal");
-        float movementVertical = Input.GetAxis("Vertical");
-
-        Vector3 movementVector = new Vector3(movementHorizontal, 0.0f, movementVertical);
+        Vector3 movementVector = playerInputHandler.MovementVector;
 
         if (hasAirControl) {    // if not in the air
             movementVector = Camera.main.transform.TransformDirection(movementVector);
@@ -332,8 +293,9 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void CheckLeverInteractInput() {
-        if (Input.GetButtonDown("Interact")) {
+    
+    public void TryInteract() {
+        if (isTouchingInteractTrigger) {
             LeverController lever = leverCollider.GetComponent<LeverController>();
             StartCoroutine(lever.MoveLeverToFinalPosition(-lever.leverState));      // pass in - lever state to switch it to other position
             if (lever.ShouldOnlyActivateOnce) {
@@ -345,7 +307,7 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Lever")) {
-            shouldCheckLeverInteractInput = true;
+            isTouchingInteractTrigger = true;
             leverCollider = other;
             LeverController leverController = other.GetComponent<LeverController>();
             // Display UI Message
@@ -357,7 +319,7 @@ public class PlayerController : MonoBehaviour {
     }
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.CompareTag("Lever")) {
-            shouldCheckLeverInteractInput = false;
+            isTouchingInteractTrigger = false;
             leverCollider = null;
             // Hide UI Message
 
