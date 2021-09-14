@@ -7,13 +7,13 @@ public class PlayerCameraController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private float rotateSpeed = 50.0f;
     [SerializeField] private float verticalRotateSpeed = 25.0f;
-    PlayerInputsManager playerInputs;
+    PlayerInputHandler playerInputs;
 
 
     // Start is called before the first frame update
     void Awake()
     {
-        playerInputs = GetComponentInParent<PlayerInputsManager>();
+        playerInputs = GetComponentInParent<PlayerInputHandler>();
     }
 
     // Update is called once per frame

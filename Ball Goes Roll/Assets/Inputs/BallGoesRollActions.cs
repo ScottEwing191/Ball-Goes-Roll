@@ -43,33 +43,17 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""MoveLeapTarget"",
-                    ""type"": ""Value"",
-                    ""id"": ""2d11b8e1-aef9-4b46-b375-2024e26576dd"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""StartLeapMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd4a3adf-2c35-46a7-9795-c9d3f0c2bad4"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""LeapFrogMode"",
-                    ""type"": ""Value"",
-                    ""id"": ""a7655fd5-8970-47a6-a6fb-294b4fa47dda"",
-                    ""expectedControlType"": ""Analog"",
-                    ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""3ab2a013-b817-48a2-b27e-b634accd0e67"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""CancelLeap"",
-                    ""type"": ""Button"",
-                    ""id"": ""0a3df9ec-3e6d-4f3f-9e60-d29772769473"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -306,94 +290,6 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""84c1359e-211a-4bc0-981a-0b1d36072151"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""MoveLeapTarget"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""WS"",
-                    ""id"": ""a58da06a-c9c7-4bfd-a613-aebdb5c3adfd"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveLeapTarget"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""0810a344-f046-40c7-bd9c-cd19bf0edec1"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""MoveLeapTarget"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""7445471e-313c-4fcb-89e1-871632691851"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveLeapTarget"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""aaff4d36-4d95-457d-b2bf-5cda17b4068a"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveLeapTarget"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""5121b865-d359-4e4a-951d-7818057b1869"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveLeapTarget"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1218d6ac-ec42-4f3f-92db-f026735dbbf3"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""LeapFrogMode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1341a62f-2367-418a-a205-7dfc9a536923"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""LeapFrogMode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a41410fb-ce6d-42b8-9a13-c86f4d09b0a4"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -416,31 +312,9 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b24fb483-3502-4dc6-bf0e-5d48a409aa44"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""CancelLeap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c84b6d2f-711b-407e-a3d7-e46f559dad2f"",
-                    ""path"": ""<Keyboard>/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""CancelLeap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e209950b-baac-4abf-a8d2-7ad546aacfdc"",
                     ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Respawn"",
@@ -455,6 +329,211 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Respawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58be35d7-4b8f-4df1-b4f5-a7dac2707730"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""StartLeapMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27f0e599-301d-4bae-b500-ad94d08c9b73"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""StartLeapMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""LeapMode"",
+            ""id"": ""12f87ba9-221d-4bdc-9d46-6e9025cb0116"",
+            ""actions"": [
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""f531584e-0e7c-4853-8ae2-3ece0ced454f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MoveLeapTarget"",
+                    ""type"": ""Value"",
+                    ""id"": ""4736c845-76e7-4128-a8bb-9a3b0431fcdf"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Leap"",
+                    ""type"": ""Button"",
+                    ""id"": ""eae13c70-022e-494b-a100-f1fa23d80281"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""CancelLeap"",
+                    ""type"": ""Button"",
+                    ""id"": ""e18c1a6d-cf2b-4e9c-8fdf-6706fe50d4a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""86698fe6-4930-4abf-a45c-a66358f21ecb"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0218d89c-047c-49d6-87a5-35d4e7fbf93a"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": ""ScaleVector2(x=0.5,y=0.5)"",
+                    ""groups"": "";Keyboard&Mouse;Touch"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12dd6425-9622-4f78-9ec8-d343edf2c295"",
+                    ""path"": ""<Joystick>/{Hatswitch}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2d42141-fd32-4367-82b9-1faf212c18d6"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MoveLeapTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WS"",
+                    ""id"": ""9096c241-e4c6-405a-9c22-448feeac2d50"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveLeapTarget"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d269cfda-d327-47d5-a206-dbb28646b76f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MoveLeapTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""bb441b61-a700-4574-b477-e78e0a8f0cd0"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveLeapTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""a23cfd14-9f34-4182-80c6-77e1d8c33409"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveLeapTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""bf6c972f-e848-4615-a0a3-6697eb93ebaf"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveLeapTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a3ed8a8-c580-4fd8-9e50-5958739d59d4"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CancelLeap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5996d87b-1f63-49f6-8672-54a495ee9074"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CancelLeap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ccde8195-4104-4709-8639-4091353ba4f6"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Leap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1b55a06-ba2a-45f0-886b-b43a1440fad2"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Leap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1035,11 +1114,15 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
-        m_Player_MoveLeapTarget = m_Player.FindAction("MoveLeapTarget", throwIfNotFound: true);
-        m_Player_LeapFrogMode = m_Player.FindAction("LeapFrogMode", throwIfNotFound: true);
+        m_Player_StartLeapMode = m_Player.FindAction("StartLeapMode", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_CancelLeap = m_Player.FindAction("CancelLeap", throwIfNotFound: true);
         m_Player_Respawn = m_Player.FindAction("Respawn", throwIfNotFound: true);
+        // LeapMode
+        m_LeapMode = asset.FindActionMap("LeapMode", throwIfNotFound: true);
+        m_LeapMode_Look = m_LeapMode.FindAction("Look", throwIfNotFound: true);
+        m_LeapMode_MoveLeapTarget = m_LeapMode.FindAction("MoveLeapTarget", throwIfNotFound: true);
+        m_LeapMode_Leap = m_LeapMode.FindAction("Leap", throwIfNotFound: true);
+        m_LeapMode_CancelLeap = m_LeapMode.FindAction("CancelLeap", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1104,10 +1187,8 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
-    private readonly InputAction m_Player_MoveLeapTarget;
-    private readonly InputAction m_Player_LeapFrogMode;
+    private readonly InputAction m_Player_StartLeapMode;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_CancelLeap;
     private readonly InputAction m_Player_Respawn;
     public struct PlayerActions
     {
@@ -1116,10 +1197,8 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
-        public InputAction @MoveLeapTarget => m_Wrapper.m_Player_MoveLeapTarget;
-        public InputAction @LeapFrogMode => m_Wrapper.m_Player_LeapFrogMode;
+        public InputAction @StartLeapMode => m_Wrapper.m_Player_StartLeapMode;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @CancelLeap => m_Wrapper.m_Player_CancelLeap;
         public InputAction @Respawn => m_Wrapper.m_Player_Respawn;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1139,18 +1218,12 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                @MoveLeapTarget.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveLeapTarget;
-                @MoveLeapTarget.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveLeapTarget;
-                @MoveLeapTarget.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveLeapTarget;
-                @LeapFrogMode.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeapFrogMode;
-                @LeapFrogMode.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeapFrogMode;
-                @LeapFrogMode.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeapFrogMode;
+                @StartLeapMode.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStartLeapMode;
+                @StartLeapMode.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStartLeapMode;
+                @StartLeapMode.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStartLeapMode;
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @CancelLeap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancelLeap;
-                @CancelLeap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancelLeap;
-                @CancelLeap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancelLeap;
                 @Respawn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRespawn;
                 @Respawn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRespawn;
                 @Respawn.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRespawn;
@@ -1167,18 +1240,12 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
-                @MoveLeapTarget.started += instance.OnMoveLeapTarget;
-                @MoveLeapTarget.performed += instance.OnMoveLeapTarget;
-                @MoveLeapTarget.canceled += instance.OnMoveLeapTarget;
-                @LeapFrogMode.started += instance.OnLeapFrogMode;
-                @LeapFrogMode.performed += instance.OnLeapFrogMode;
-                @LeapFrogMode.canceled += instance.OnLeapFrogMode;
+                @StartLeapMode.started += instance.OnStartLeapMode;
+                @StartLeapMode.performed += instance.OnStartLeapMode;
+                @StartLeapMode.canceled += instance.OnStartLeapMode;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @CancelLeap.started += instance.OnCancelLeap;
-                @CancelLeap.performed += instance.OnCancelLeap;
-                @CancelLeap.canceled += instance.OnCancelLeap;
                 @Respawn.started += instance.OnRespawn;
                 @Respawn.performed += instance.OnRespawn;
                 @Respawn.canceled += instance.OnRespawn;
@@ -1186,6 +1253,63 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // LeapMode
+    private readonly InputActionMap m_LeapMode;
+    private ILeapModeActions m_LeapModeActionsCallbackInterface;
+    private readonly InputAction m_LeapMode_Look;
+    private readonly InputAction m_LeapMode_MoveLeapTarget;
+    private readonly InputAction m_LeapMode_Leap;
+    private readonly InputAction m_LeapMode_CancelLeap;
+    public struct LeapModeActions
+    {
+        private @BallGoesRollActions m_Wrapper;
+        public LeapModeActions(@BallGoesRollActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Look => m_Wrapper.m_LeapMode_Look;
+        public InputAction @MoveLeapTarget => m_Wrapper.m_LeapMode_MoveLeapTarget;
+        public InputAction @Leap => m_Wrapper.m_LeapMode_Leap;
+        public InputAction @CancelLeap => m_Wrapper.m_LeapMode_CancelLeap;
+        public InputActionMap Get() { return m_Wrapper.m_LeapMode; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LeapModeActions set) { return set.Get(); }
+        public void SetCallbacks(ILeapModeActions instance)
+        {
+            if (m_Wrapper.m_LeapModeActionsCallbackInterface != null)
+            {
+                @Look.started -= m_Wrapper.m_LeapModeActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_LeapModeActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_LeapModeActionsCallbackInterface.OnLook;
+                @MoveLeapTarget.started -= m_Wrapper.m_LeapModeActionsCallbackInterface.OnMoveLeapTarget;
+                @MoveLeapTarget.performed -= m_Wrapper.m_LeapModeActionsCallbackInterface.OnMoveLeapTarget;
+                @MoveLeapTarget.canceled -= m_Wrapper.m_LeapModeActionsCallbackInterface.OnMoveLeapTarget;
+                @Leap.started -= m_Wrapper.m_LeapModeActionsCallbackInterface.OnLeap;
+                @Leap.performed -= m_Wrapper.m_LeapModeActionsCallbackInterface.OnLeap;
+                @Leap.canceled -= m_Wrapper.m_LeapModeActionsCallbackInterface.OnLeap;
+                @CancelLeap.started -= m_Wrapper.m_LeapModeActionsCallbackInterface.OnCancelLeap;
+                @CancelLeap.performed -= m_Wrapper.m_LeapModeActionsCallbackInterface.OnCancelLeap;
+                @CancelLeap.canceled -= m_Wrapper.m_LeapModeActionsCallbackInterface.OnCancelLeap;
+            }
+            m_Wrapper.m_LeapModeActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
+                @MoveLeapTarget.started += instance.OnMoveLeapTarget;
+                @MoveLeapTarget.performed += instance.OnMoveLeapTarget;
+                @MoveLeapTarget.canceled += instance.OnMoveLeapTarget;
+                @Leap.started += instance.OnLeap;
+                @Leap.performed += instance.OnLeap;
+                @Leap.canceled += instance.OnLeap;
+                @CancelLeap.started += instance.OnCancelLeap;
+                @CancelLeap.performed += instance.OnCancelLeap;
+                @CancelLeap.canceled += instance.OnCancelLeap;
+            }
+        }
+    }
+    public LeapModeActions @LeapMode => new LeapModeActions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -1341,11 +1465,16 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
-        void OnMoveLeapTarget(InputAction.CallbackContext context);
-        void OnLeapFrogMode(InputAction.CallbackContext context);
+        void OnStartLeapMode(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnCancelLeap(InputAction.CallbackContext context);
         void OnRespawn(InputAction.CallbackContext context);
+    }
+    public interface ILeapModeActions
+    {
+        void OnLook(InputAction.CallbackContext context);
+        void OnMoveLeapTarget(InputAction.CallbackContext context);
+        void OnLeap(InputAction.CallbackContext context);
+        void OnCancelLeap(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

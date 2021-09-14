@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour {
     private Collider playerCollider;                                        // the collider attached to the player used to check if player is grounded
     private Collider leverCollider;                                         // will be set to "other" collider OnTriggerEnter when the player is touching a lever trigger
 
-    private PlayerInputsManager inputsManager;
+    private PlayerInputHandler inputsManager;
     #region Properties
     public bool IsGrounded {
         get { return isGrounded; }
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour {
         startPos = transform.position;
         leapLine = GetComponentInChildren<LineRenderer>();
         leapLine.gameObject.SetActive(false);
-        inputsManager = GetComponentInParent<PlayerInputsManager>();
+        inputsManager = GetComponentInParent<PlayerInputHandler>();
     }
     void FixedUpdate() {
         if (isGrounded && !isLeaping) {      // Regular movement
@@ -109,26 +109,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Update() {
-        // Set is Grounded every frame
-
         hasGroundCheckBeenDoneThisFrame = false;
-        CheckRespawn();
-        //CheckSkipToNextCheckpoint();
-        //DoJump();       // 
-
-        DoLeap();       // Handle Leapfrog  
-
         if (shouldCheckLeverInteractInput) {
             CheckLeverInteractInput();
         }
-
         SetLeapTargetYPosition();       // Can probably be removed when i dont want the leap target to be visible all the time
-
     }
-
-
-    private void CheckRespawn() {
-        if (!inLeapViewMode && Input.GetButtonDown("Respawn")) {     // Respawn the player if they are not in leap view mode
+    public void Respawn() {
+        if (!inLeapViewMode) {     // Respawn the player if they are not in leap view mode
             PlayerSingleton.Instance.PlayerRespawn.Respawn();
             GameManager.Instance.ResetBall();
         }
@@ -149,63 +137,60 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+
     private void SetLeapTargetYPosition() {
 
         leapTarget.position = new Vector3(leapTarget.position.x, transform.position.y, leapTarget.position.z);
 
     }
 
-    private void DoLeap() {
+    // Input Triggered Version
+    public IEnumerator StartLeapMode() {
+        if (!isLeapMechanicEnabled) { yield break; }     // if the leap mechanic is not enabled then dont bother doing anything else
+        if (!isGrounded) { yield break; }
+        
+        while (inputsManager.RunLeapRoutine) {
+
+            // ENTER LEAP VIEW MODE
+            if (!inLeapViewMode && isGrounded && onLeapSurface) {
+                SetLeapModeVariableActiveState(true);
+
+                rb.AddForce(-rb.velocity, ForceMode.VelocityChange);                // stop the ball when entering leap mode
+                rb.AddTorque(-rb.angularVelocity, ForceMode.VelocityChange);
+                leapVelocity = Vector3.zero;                                            // Resetting leap Velocity for next leap
+
+            }
+            // STOP LEAP SINCE BALL IS NOT ON GROUND
+            else if (inLeapViewMode && !isGrounded) {
+                SetLeapModeVariableActiveState(false);
+            }
+            // UPDATE 
+            else if (inLeapViewMode && isGrounded) {           // passes every frame leep view mode while is active
+                SetLeapModeVariableActiveState(true);
+
+                //Target Position Method
+                MoveLeapTarget();
+                Vector3[] linepoints = leapFrogMechanic.GetPathPointsNoLimit();
+
+                leapFrogMechanic.RenderPath(linepoints);        // render the ball tragectory line
+                leapLandObject.transform.position = linepoints[linepoints.Length - 1];
+            }
+            yield return null;
+        }
+    }
+
+    private void SetLeapModeVariableActiveState(bool active) {
+        inLeapViewMode = active;
+        leapTarget.gameObject.SetActive(active);
+        leapLine.gameObject.SetActive(active);
+        leapLandObject.SetActive(active);
+    }
+    public void Leap() {
         if (!isLeapMechanicEnabled) { return; }     // if the leap mechanic is not enabled then dont bother doing anything else
 
-        // ENTER LEAP VIEW MODE
-        //if (Input.GetButtonDown("LeapFrogMode") && !inLeapViewMode && isGrounded && onLeapSurface) {     // Entering leap view mode
-        if (inputsManager.LeapFrogModePressed && !inLeapViewMode && isGrounded && onLeapSurface) {     // Entering leap view mode
-
-            inLeapViewMode = true;
-            leapTarget.gameObject.SetActive(true);
-            leapLine.gameObject.SetActive(true);
-            leapLandObject.SetActive(true);
-
-            rb.AddForce(-rb.velocity, ForceMode.VelocityChange);                // stop the ball when entering leap mode
-            rb.AddTorque(-rb.angularVelocity, ForceMode.VelocityChange);
-            leapVelocity = Vector3.zero;                                            // Resetting leap Velocity for next leap
-            //print("Enter Leap Frog Mode");
-        }
-        //else if (Input.GetButton("LeapFrogMode") && inLeapViewMode && !isGrounded) {          // not touching ground so not in leapview mode
-        else if (inputsManager.LeapFrogModeHeld && inLeapViewMode && !isGrounded) {          // not touching ground so not in leapview mode
-            inLeapViewMode = false;
-            leapTarget.gameObject.SetActive(false);
-            leapLine.gameObject.SetActive(false);
-            leapLandObject.SetActive(false);
-
-
-        }
-
-        //else if (Input.GetButton("LeapFrogMode") && inLeapViewMode && isGrounded) {           // passes every frame leep view mode while is active
-        else if (inputsManager.LeapFrogModeHeld && inLeapViewMode && isGrounded) {           // passes every frame leep view mode while is active
-            inLeapViewMode = true;
-            leapTarget.gameObject.SetActive(true);
-            leapLine.gameObject.SetActive(true);
-            leapLandObject.SetActive(true);
-            //print("Leap Frog Mode Active");
-
-            //Target Position Method
-            MoveLeapTarget();
-            //Vector3[] linepoints = leapFrogMechanic.GetPathPoints();
-            Vector3[] linepoints = leapFrogMechanic.GetPathPointsNoLimit();
-
-            leapFrogMechanic.RenderPath(linepoints);        // render the ball tragectory line
-            leapLandObject.transform.position = linepoints[linepoints.Length - 1];
-        }
-        // LEAP     The ball is in the air
-        //else if (Input.GetButtonUp("LeapFrogMode") && inLeapViewMode) {
-        else if (inputsManager.LeapFrogModeReleased && inLeapViewMode) {
-            //print("Jump");
+        if (InLeapViewMode) {
             inLeapViewMode = false;                   // Probably set this later
             leapTarget.gameObject.SetActive(false);
-            //leapLandObject.SetActive(false);
-
 
             //Target Position Method
             leapVelocity = leapFrogMechanic.CalculateLaunchData().initialVelocity;
@@ -215,18 +200,16 @@ public class PlayerController : MonoBehaviour {
 
             StartCoroutine("Leaping");
         }
-        // CANCEL LEAP
-        
-        //if (Input.GetButtonDown("Cancel") && inLeapViewMode) {
-        if (inputsManager.CancelLeap && inLeapViewMode) {
-            //print("Cancel Leapfrog Mode");
-            inLeapViewMode = false;
-            leapTarget.gameObject.SetActive(false);
-            leapLine.gameObject.SetActive(false);
-            leapLandObject.SetActive(false);
-        }
     }
 
+    public void CancelLeap() {
+        if (!isLeapMechanicEnabled) { return; }     // if the leap mechanic is not enabled then dont bother doing anything else
+
+        if (inLeapViewMode) {
+            SetLeapModeVariableActiveState(false);
+        }
+
+    }
     // reset the is leaping bool once the ball has landed. also reset the drag
     IEnumerator Leaping() {
         yield return new WaitForSeconds(0.1f);          // wait a fraction of a second to make suure ball is off the ground. otherwise in air control and drag will be on while ball is in air
@@ -238,7 +221,6 @@ public class PlayerController : MonoBehaviour {
         leapTarget.gameObject.SetActive(false);
         leapLine.gameObject.SetActive(false);
         leapLandObject.SetActive(false);
-
 
         rb.drag = defaultDrag;
     }
