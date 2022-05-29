@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="@BallGoesRollActions" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="13.5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="@BallGoesRollActions.PlayerActions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Inputs\BallGoesRollActions.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="@BallGoesRollActions.LeapModeActions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Inputs\BallGoesRollActions.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="@BallGoesRollActions.UIActions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Inputs\BallGoesRollActions.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Interface Name="@BallGoesRollActions.IPlayerActions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Inputs\BallGoesRollActions.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Interface Name="@BallGoesRollActions.ILeapModeActions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Inputs\BallGoesRollActions.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Interface Name="@BallGoesRollActions.IUIActions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Inputs\BallGoesRollActions.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIIARAAAACAAIBAiACKkGxAIcAIXRGAWAGMlMFgQAMA=</HashCode>
+      <FileName>Assets\Inputs\BallGoesRollActions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.1" Collapsed="true" />
+  </Class>
+  <Class Name="BarrierController">
+    <Position X="16.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAgAgACIAAAAEEIVICAQAEAAEAAAACAAAAIAggEA=</HashCode>
+      <FileName>Assets\Scripts\Barriers\BarrierController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LeverController" Collapsed="true">
+    <Position X="15.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAACIhAAAAAAQIgGgIwAAUAAAQABAAAggAAEA=</HashCode>
+      <FileName>Assets\Scripts\Barriers\LeverController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="barrierController" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PhysicsPlatforms" Collapsed="true">
+    <Position X="31.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAECAAAiAAADQGAIAQAAIAMgCMCAQAABgAAICAIEA=</HashCode>
+      <FileName>Assets\Scripts\Barriers\PhysicsPlatforms.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickObjectColor" Collapsed="true">
+    <Position X="33" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAAAgAAAgAAEA=</HashCode>
+      <FileName>Assets\Scripts\Barriers\PickObjectColor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="GameManager.ButtonType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Managers\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ChRAAgAAACAAGAAIDACAiCAAAAAIAQAAARCAAkBUAEA=</HashCode>
+      <FileName>Assets\Scripts\Managers\GameManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MainMenuManager">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARAIAAAAAAAAEAAAABAACAAgAAAAAAAAQBAAgEBAAEA=</HashCode>
+      <FileName>Assets\Scripts\Managers\MainMenuManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MonoSingleton&lt;T&gt;">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAACAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Managers\MonoSingleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerSingleton">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAEAAAAAAAAAAAEAAAAAAAAAABAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Managers\PlayerSingleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UILevelManager">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gARCHcgSAGZgQARAAAQJAAzGSAEKjAGVAAgJWYClA0c=</HashCode>
+      <FileName>Assets\Scripts\Managers\UILevelManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIMainMenuManager">
+    <Position X="7.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAEUAQQCEQAEBAgAABgYCkAAEAQAEQAEAAAQAAACE=</HashCode>
+      <FileName>Assets\Scripts\Managers\UIMainMenuManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Checkpoint">
+    <Position X="23.5" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAIAAAAAAACAAAAAgAAgAACAgAAAAAEg=</HashCode>
+      <FileName>Assets\Scripts\Misc\Checkpoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coin" Collapsed="true">
+    <Position X="31.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAAACAAAAAAAAAAAAAAAAAAEAAAQQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Misc\Coin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HideMeshOnStart" Collapsed="true">
+    <Position X="34.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Misc\HideMeshOnStart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SetScale" Collapsed="true">
+    <Position X="26" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\Misc\SetScale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TutorialTip" Collapsed="true">
+    <Position X="31.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAAAAAAAAABAAAAAAAAAQAAAAAgAIAAAAAIAA=</HashCode>
+      <FileName>Assets\Scripts\Misc\TutorialTip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FanController" Collapsed="true">
+    <Position X="27.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAABAAQAAAAIAAAAAAAIAEQAAACgAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Obstacles\FanController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerControlledPlatform" Collapsed="true">
+    <Position X="34.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAQAECAAAAAEAAAAAAEAAAAAAAAEABAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Obstacles\PlayerControlledPlatform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ReturnToRestRotation">
+    <Position X="0.5" Y="21.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAACAAAAAEAAAAAAEAAIAAAAAMABAAAAABAAA=</HashCode>
+      <FileName>Assets\Scripts\Obstacles\ReturnToRestRotation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="spinningObject" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpinningObject">
+    <Position X="3.5" Y="21.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAgCQAAiAAAIAGAAAAAAAAAAgBAAAKAAAAAAAADAA=</HashCode>
+      <FileName>Assets\Scripts\Obstacles\SpinningObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BallAudio">
+    <Position X="16.5" Y="23.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAABEACAAAAARABAAAAAEAQ=</HashCode>
+      <FileName>Assets\Scripts\Player\BallAudio.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="playerController" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CharacterAnimationController" Collapsed="true">
+    <Position X="29.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAQgAECAQAAAAAAAIAAAAAQAAQAAAAYBAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\Player\CharacterAnimationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlScale" Collapsed="true">
+    <Position X="26" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\ControlScale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FollowTargetPosition" Collapsed="true">
+    <Position X="31.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAAAAACAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\FollowTargetPosition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FollowTargetYPosition" Collapsed="true">
+    <Position X="33" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAAAAACAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\FollowTargetYPosition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeepParallelToGround">
+    <Position X="16.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\KeepParallelToGround.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="player" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="LeapFrogMechanic">
+    <Position X="16.5" Y="17.5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="LeapFrogMechanic.LaunchData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Player\LeapFrogMechanic.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQQAAgAAaAAAAQAAIAAAAAIABwCAABBAAAAAAAAAIA=</HashCode>
+      <FileName>Assets\Scripts\Player\LeapFrogMechanic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerCameraController">
+    <Position X="10.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAABAAAAAAABAAAAAQAAAAAAAAAABAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerCameraController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="playerInputs" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PlayerCheckpointController">
+    <Position X="20.5" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgBAAAAQQABAEEEAAIAAIAAABAAAVARAQAAAAAAAIAA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerCheckpointController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="currentCheckpoint" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PlayerController">
+    <Position X="13.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KAyAAQwICmEAACAeHAAAJMSSHBEBGYBeyDACCQhQBAI=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="leapFrogMechanic" />
+      <Field Name="playerInputHandler" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PlayerInputHandler">
+    <Position X="10.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CASACQAACAAAAAAEAEAAyAAEAAAkACgIAAJIAqQQCmA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerInputHandler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="controls" />
+      <Field Name="playerController" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="FileManager" Collapsed="true">
+    <Position X="29.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\Scripts\SavingAndLoading\FileManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaveData" Collapsed="true">
+    <Position X="29.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAgAAAAAACAAAAAAAAAAAAAMAAAQBAAAEA=</HashCode>
+      <FileName>Assets\Scripts\SavingAndLoading\SaveData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaveDataManager" Collapsed="true">
+    <Position X="31.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\SavingAndLoading\SaveDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScoringSystem" Collapsed="true">
+    <Position X="33" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IFBgIAAAYAAAAAABEDAAEQAAAAAIAAEACAABABBAAAA=</HashCode>
+      <FileName>Assets\Scripts\ScoringSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SetCentreOfMass" Collapsed="true">
+    <Position X="34.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAACAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\SetCentreOfMass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BackgroundMusic" Collapsed="true">
+    <Position X="26" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAEAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Sound\BackgroundMusic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MixLevels" Collapsed="true">
+    <Position X="29.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAgAAAAAAAAAACEAgAGAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Sound\MixLevels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HighScoreStars">
+    <Position X="18.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAEAAAAAAAAAAAAAAACAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\UI\HighScoreStars.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="starImagesArray" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="BallLauncher" Collapsed="true">
+    <Position X="27.75" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="BallLauncher.LaunchData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Unused\BallLauncher.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAgAgAQCAAIBAAIAAAAAAAAAACAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Unused\BallLauncher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LeapFrogLauncher" Collapsed="true">
+    <Position X="27.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAgAACAAAAAAAAAAQAAAAABAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Unused\LeapFrogLauncher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerOnPlatformMovement" Collapsed="true">
+    <Position X="26" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAMAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Unused\PlayerOnPlatformMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpinningMallet_AddForce" Collapsed="true">
+    <Position X="29.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAiAAAAAEAAAAAAAABABAABAIAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Scripts\Unused\SpinningMallet_AddForce.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TouchTrigger">
+    <Position X="2.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Triggers\Scripts\TouchTrigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Trigger">
+    <Position X="2.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAEgAAAAIAAAAAAAAAAAAAABAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Triggers\Scripts\Trigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Readme" Collapsed="true">
+    <Position X="27.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAQAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\TutorialInfo\Scripts\Readme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Controller" Collapsed="true">
+    <Position X="34.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQARCUAACAAAAAAIABwAAgAAAAgAAAAIAAKAAEAAAA=</HashCode>
+      <FileName>Assets\UI Buttons\Scripts\Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScottEwing.MovingObjects.MovingPhysicsPlatform3D.ConditionalHideAttribute" Collapsed="true">
+    <Position X="33" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAIAAAACAAAAgEAABBAEAAAAAgA=</HashCode>
+      <FileName>Assets\Scott Ewing\3D Moving Physics Platforms\Scripts\ConditionalHideAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScottEwing.MovingObjects.MovingPhysicsPlatform3D.HideMeshOnStart" Collapsed="true">
+    <Position X="26" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scott Ewing\3D Moving Physics Platforms\Scripts\HideMeshOnStart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScottEwing.MovingObjects.MovingPhysicsPlatform3D.LeverController">
+    <Position X="23.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAACIhAAAAAAQIgGAIgAAQAIAQQBgAAgAAAEA=</HashCode>
+      <FileName>Assets\Scott Ewing\3D Moving Physics Platforms\Scripts\LeverController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="physicsPlatform" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ScottEwing.MovingObjects.MovingPhysicsPlatform3D.PhysicsPlatform">
+    <Position X="20.5" Y="7.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="ScottEwing.MovingObjects.MovingPhysicsPlatform3D.PhysicsPlatform.PlatformState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scott Ewing\3D Moving Physics Platforms\Scripts\PhysicsPlatform.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IQQEACAAAgCwADEEAIAQQAIAMgCECAQIBBgABACAaGA=</HashCode>
+      <FileName>Assets\Scott Ewing\3D Moving Physics Platforms\Scripts\PhysicsPlatform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityTemplateProjects.SimpleCameraController" Collapsed="true">
+    <Position X="27.75" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="UnityTemplateProjects.SimpleCameraController.CameraState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\SimpleCameraController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAwgAAAAAAAAAIJAAAAAAAAAAAAAAAAAECAACAA=</HashCode>
+      <FileName>Assets\Scripts\SimpleCameraController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Scores" Collapsed="true">
+    <Position X="26" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ScoringSystem.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="StarImages">
+    <Position X="15.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAIAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\HighScoreStars.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="ISaveable" Collapsed="true">
+    <Position X="26" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\SavingAndLoading\SaveData.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
