@@ -16727,7 +16727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MovementRange: 50
-  m_ControlPath: <Joystick>/stick
+  m_ControlPath: <Gamepad>/leftStick
 --- !u!114 &557582667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59030,7 +59030,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
-  m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: a04ed3caf5e7107468f8bda392198c39, type: 3}
   m_PointAction: {fileID: -1386966558221928743, guid: a04ed3caf5e7107468f8bda392198c39, type: 3}
   m_MoveAction: {fileID: -8979832785160689758, guid: a04ed3caf5e7107468f8bda392198c39, type: 3}
@@ -60114,14 +60113,14 @@ PrefabInstance:
     - target: {fileID: 1532796852, guid: 54e4c60ebbfdf5c4c8238b85bfaf2c94, type: 3}
       propertyPath: m_UIInputModule
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2088948829}
     - target: {fileID: 1532796852, guid: 54e4c60ebbfdf5c4c8238b85bfaf2c94, type: 3}
       propertyPath: m_DefaultActionMap
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1532796852, guid: 54e4c60ebbfdf5c4c8238b85bfaf2c94, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: 
+      value: Gamepad
       objectReference: {fileID: 0}
     - target: {fileID: 1532796852, guid: 54e4c60ebbfdf5c4c8238b85bfaf2c94, type: 3}
       propertyPath: m_NotificationBehavior
