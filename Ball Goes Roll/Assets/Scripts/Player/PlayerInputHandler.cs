@@ -13,14 +13,14 @@ public class PlayerInputHandler : MonoBehaviour {
 
     private bool leapJustCancelled, nextCheckpointPressed;
     private PlayerInput playerInput;
-    //private BallGoesRollActions controls;
+    private BallGoesRollActions controls;
     private PlayerController playerController;
     private InputActionMap playerActionMap, leapModeActionMap, UIActionMap;
     private Action swapPlayerAndLeapModeActionMap;
 
 
     private void Awake() {
-        //controls = new BallGoesRollActions();
+        controls = new BallGoesRollActions();
         playerController = GetComponentInChildren<PlayerController>();
         playerInput = GetComponent<PlayerInput>();
         playerActionMap = playerInput.actions.FindActionMap("Player");
@@ -31,41 +31,20 @@ public class PlayerInputHandler : MonoBehaviour {
     }
 
     private void OnEnable() {
-        //controls.Enable();
+        controls.Enable();
         swapPlayerAndLeapModeActionMap += SwapPlayerAndLeapModeActionMap;
 
     }
     private void OnDisable() {
-        //controls.Disable();
+        controls.Disable();
         swapPlayerAndLeapModeActionMap -= SwapPlayerAndLeapModeActionMap;
 
     }
 
     // === On Action Methods Start ===
-    public void OnMove(InputAction.CallbackContext input) {
-        Vector2 v = input.action.ReadValue<Vector2>();
-        MovementVector = new Vector3(v.x, 0, v.y);
-        //print(v);
-        if (input.started) {
-            print("Started");
-        }
-        if (input.performed) {
-            print("Performed");
-  
-        }
-        if (input.canceled) {
-            print("Canceled");
-
-        }
-        
-
-    }
     private void OnMove(InputValue input) {
         Vector2 v = input.Get<Vector2>();
         MovementVector = new Vector3(v.x, 0, v.y);
-        print("Movement Vector: " + MovementVector);
-        
-
     }
     private void OnLook(InputValue input) {
         Vector2 v = input.Get<Vector2>();
@@ -75,10 +54,6 @@ public class PlayerInputHandler : MonoBehaviour {
 
     private void OnJump(InputValue input) {
         playerController.DoJump();
-    }
-    public void OnJump(InputAction.CallbackContext input) {
-        playerController.DoJump();
-        print("Jump");
     }
 
     private void OnInteract(InputValue input) {
