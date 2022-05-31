@@ -46,6 +46,20 @@ public class PlayerInputHandler : MonoBehaviour {
         Vector2 v = input.Get<Vector2>();
         MovementVector = new Vector3(v.x, 0, v.y);
     }
+    public void OnMove(InputAction.CallbackContext input) {
+        Vector2 v = input.action.ReadValue<Vector2>();
+        MovementVector = new Vector3(v.x, 0, v.y);
+        if (input.started) {
+            print("started");
+        }
+        if (input.performed) {
+            print("performed");
+        }
+        if (input.canceled) {
+            print("canceled");
+        }
+    }
+    
     private void OnLook(InputValue input) {
         Vector2 v = input.Get<Vector2>();
         HorizontalCameraMovement = v.x;
