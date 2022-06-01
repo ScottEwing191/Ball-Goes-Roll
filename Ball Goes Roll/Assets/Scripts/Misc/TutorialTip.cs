@@ -10,6 +10,10 @@ public class TutorialTip : MonoBehaviour {
     private bool showingTip = false;
 
     private void Update() {
+        print("Cancel");
+        if (Input.GetButtonDown("Cancel")) {
+            
+        }    
         if (showingTip && Input.GetButtonDown("Cancel")) {
             StartCoroutine(TryHideTutorial());
         }
