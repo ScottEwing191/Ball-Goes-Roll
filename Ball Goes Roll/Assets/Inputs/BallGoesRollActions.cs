@@ -20,7 +20,7 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""add607c1-a92e-4f40-b686-cb8fa827d2f1"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -90,7 +90,7 @@ public class @BallGoesRollActions : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Keyboard&Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
