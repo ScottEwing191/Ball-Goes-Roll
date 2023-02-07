@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,14 +10,19 @@ public class TutorialTip : MonoBehaviour {
     [SerializeField] private Image tutorialImage;                              // the image component on the canvas will be displayed to the user
     private bool showingTip = false;
 
+    private PlayerInputHandler playerInputHandler;
+    private void Awake() {
+        playerInputHandler = FindObjectOfType<PlayerInputHandler>();
+    }
+
     private void Update() {
-        print("Cancel");
-        if (Input.GetButtonDown("Cancel")) {
-            
-        }    
-        if (showingTip && Input.GetButtonDown("Cancel")) {
+        
+        if (showingTip && playerInputHandler.Controls.Player.CloseTooltip.triggered) {
             StartCoroutine(TryHideTutorial());
         }
+        /*if (showingTip && Input.GetButtonDown("Cancel")) {
+            StartCoroutine(TryHideTutorial());
+        }*/
     }
 
 

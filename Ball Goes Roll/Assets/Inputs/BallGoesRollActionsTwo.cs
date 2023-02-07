@@ -75,6 +75,14 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Close Tooltip"",
+                    ""type"": ""Button"",
+                    ""id"": ""01bcb823-2c33-4ddb-9e56-0c53dcdc0bac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""NextCheckpoint"",
                     ""type"": ""Button"",
                     ""id"": ""a076c291-83c5-45eb-a167-3006c7a860df"",
@@ -199,7 +207,7 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
                     ""id"": ""c1f7a91b-d0fd-4a62-997e-7fb9b69bf235"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -356,6 +364,17 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""NextCheckpoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3a413c2-3df7-4223-8ebc-531e990552e2"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Close Tooltip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -969,6 +988,33 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Tool"",
+            ""id"": ""f2eca34f-e94e-4665-8ffa-3b7d9d0ae711"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""42e57e4d-cf76-4ec9-bdc2-ca6250b9eb06"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8ec8f350-85ce-48b6-aa52-059feb8aba0b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -982,6 +1028,7 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Respawn = m_Player.FindAction("Respawn", throwIfNotFound: true);
+        m_Player_CloseTooltip = m_Player.FindAction("Close Tooltip", throwIfNotFound: true);
         m_Player_NextCheckpoint = m_Player.FindAction("NextCheckpoint", throwIfNotFound: true);
         // LeapMode
         m_LeapMode = asset.FindActionMap("LeapMode", throwIfNotFound: true);
@@ -1002,6 +1049,9 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_TogglePauseMenu = m_UI.FindAction("TogglePauseMenu", throwIfNotFound: true);
+        // Tool
+        m_Tool = asset.FindActionMap("Tool", throwIfNotFound: true);
+        m_Tool_Newaction = m_Tool.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1058,6 +1108,7 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Respawn;
+    private readonly InputAction m_Player_CloseTooltip;
     private readonly InputAction m_Player_NextCheckpoint;
     public struct PlayerActions
     {
@@ -1070,6 +1121,7 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Respawn => m_Wrapper.m_Player_Respawn;
+        public InputAction @CloseTooltip => m_Wrapper.m_Player_CloseTooltip;
         public InputAction @NextCheckpoint => m_Wrapper.m_Player_NextCheckpoint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1101,6 +1153,9 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
                 @Respawn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRespawn;
                 @Respawn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRespawn;
                 @Respawn.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRespawn;
+                @CloseTooltip.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCloseTooltip;
+                @CloseTooltip.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCloseTooltip;
+                @CloseTooltip.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCloseTooltip;
                 @NextCheckpoint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextCheckpoint;
                 @NextCheckpoint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextCheckpoint;
                 @NextCheckpoint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextCheckpoint;
@@ -1129,6 +1184,9 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
                 @Respawn.started += instance.OnRespawn;
                 @Respawn.performed += instance.OnRespawn;
                 @Respawn.canceled += instance.OnRespawn;
+                @CloseTooltip.started += instance.OnCloseTooltip;
+                @CloseTooltip.performed += instance.OnCloseTooltip;
+                @CloseTooltip.canceled += instance.OnCloseTooltip;
                 @NextCheckpoint.started += instance.OnNextCheckpoint;
                 @NextCheckpoint.performed += instance.OnNextCheckpoint;
                 @NextCheckpoint.canceled += instance.OnNextCheckpoint;
@@ -1306,6 +1364,39 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Tool
+    private readonly InputActionMap m_Tool;
+    private IToolActions m_ToolActionsCallbackInterface;
+    private readonly InputAction m_Tool_Newaction;
+    public struct ToolActions
+    {
+        private @BallGoesRollActionsTwo m_Wrapper;
+        public ToolActions(@BallGoesRollActionsTwo wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Tool_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Tool; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ToolActions set) { return set.Get(); }
+        public void SetCallbacks(IToolActions instance)
+        {
+            if (m_Wrapper.m_ToolActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_ToolActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_ToolActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_ToolActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_ToolActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public ToolActions @Tool => new ToolActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -1315,6 +1406,7 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnRespawn(InputAction.CallbackContext context);
+        void OnCloseTooltip(InputAction.CallbackContext context);
         void OnNextCheckpoint(InputAction.CallbackContext context);
     }
     public interface ILeapModeActions
@@ -1337,5 +1429,9 @@ public class @BallGoesRollActionsTwo : IInputActionCollection, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnTogglePauseMenu(InputAction.CallbackContext context);
+    }
+    public interface IToolActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

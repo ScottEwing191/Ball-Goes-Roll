@@ -62,6 +62,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Close Tooltip",
+                    "type": "Button",
+                    "id": "01bcb823-2c33-4ddb-9e56-0c53dcdc0bac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "NextCheckpoint",
                     "type": "Button",
                     "id": "a076c291-83c5-45eb-a167-3006c7a860df",
@@ -186,7 +194,7 @@
                     "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": "",
                     "action": "Look",
                     "isComposite": false,
@@ -343,6 +351,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "NextCheckpoint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b3a413c2-3df7-4223-8ebc-531e990552e2",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close Tooltip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -952,6 +971,33 @@
                     "processors": "",
                     "groups": "",
                     "action": "TogglePauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Tool",
+            "id": "f2eca34f-e94e-4665-8ffa-3b7d9d0ae711",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "42e57e4d-cf76-4ec9-bdc2-ca6250b9eb06",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8ec8f350-85ce-48b6-aa52-059feb8aba0b",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -13,14 +13,16 @@ public class PlayerInputHandler : MonoBehaviour {
 
     private bool leapJustCancelled, nextCheckpointPressed;
     private PlayerInput playerInput;
-    private BallGoesRollActions controls;
+
+    public BallGoesRollActionsTwo Controls { get; set; }
+
     private PlayerController playerController;
     private InputActionMap playerActionMap, leapModeActionMap, UIActionMap;
     private Action swapPlayerAndLeapModeActionMap;
 
 
     private void Awake() {
-        controls = new BallGoesRollActions();
+        Controls = new BallGoesRollActionsTwo();
         playerController = GetComponentInChildren<PlayerController>();
         playerInput = GetComponent<PlayerInput>();
         playerActionMap = playerInput.actions.FindActionMap("Player");
@@ -31,12 +33,12 @@ public class PlayerInputHandler : MonoBehaviour {
     }
 
     private void OnEnable() {
-        controls.Enable();
+        Controls.Enable();
         swapPlayerAndLeapModeActionMap += SwapPlayerAndLeapModeActionMap;
 
     }
     private void OnDisable() {
-        controls.Disable();
+        Controls.Disable();
         swapPlayerAndLeapModeActionMap -= SwapPlayerAndLeapModeActionMap;
 
     }
@@ -65,6 +67,7 @@ public class PlayerInputHandler : MonoBehaviour {
         HorizontalCameraMovement = v.x;
         VerticalCameraMovement = -v.y;      // inverted is better
     }
+    
 
     private void OnJump(InputValue input) {
         playerController.DoJump();
@@ -76,9 +79,14 @@ public class PlayerInputHandler : MonoBehaviour {
     }
 
     private void OnRespawn(InputValue input) {
+        print("RESPAWN");
         playerController.Respawn();
     }
 
+    private void OnCloseTip(InputValue input) {
+        print("On Close Tip");
+        
+    }
     private void OnNextCheckpoint(InputValue input) {
         nextCheckpointPressed = !nextCheckpointPressed;
         if (nextCheckpointPressed) {
@@ -122,10 +130,10 @@ public class PlayerInputHandler : MonoBehaviour {
 
     private void OnTogglePauseMenu(InputValue input) {
         GameManager.Instance.DoPauseGame();
-        if (playerActionMap.enabled)
+        /*if (playerActionMap.enabled)
             playerActionMap.Disable();
         else
-            playerActionMap.Enable();
+            playerActionMap.Enable();*/
     }
 
     // === On Action Methods End ===
